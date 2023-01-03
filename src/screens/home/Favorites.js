@@ -1,8 +1,27 @@
-import {StyleSheet, ImageBackground, Text, View} from 'react-native';
-import React from 'react';
+import {
+  StyleSheet,
+  ImageBackground,
+  Text,
+  View,
+  ScrollView,
+} from 'react-native';
+import React, {useEffect} from 'react';
 import {COLORS} from '../../constants';
+import store from '../../redux/Store/store';
+import BigMovies from '../../components/BigMovies';
+import SingleFavorite from './SingleFavorite';
 
 const Favorites = () => {
+  const favorite = store.getState().moviesSlice.favorties;
+  const getFavoriteMovies = async () => {
+    console.log(favorite);
+    return favorite;
+  };
+
+  useEffect(() => {
+    getFavoriteMovies();
+  }, [favorite]);
+  console.log('IN FAVORITES');
   return (
     <ImageBackground
       source={require('../../assets/bgImg.png')}
@@ -15,6 +34,30 @@ const Favorites = () => {
             alignItems: 'center',
           }}>
           <Text>Favorites!</Text>
+          <ScrollView nestedScrollEnabled horizontal={false}>
+            {favorite.map((movie, i) => {
+              return (
+                <View
+                  key={i}
+                  style={{
+                    paddingTop: 35,
+                    width: 400,
+                    heigh: 400,
+                    paddingRight: 10,
+                    flex: 1,
+                  }}>
+                  <SingleFavorite
+                    favorite={favorite}
+                    Poster={movie.Poster}
+                    Title={movie.Title}
+                    Year={movie.Year}
+                    Id={movie.imdbID}
+                    Type={movie.Type}
+                  />
+                </View>
+              );
+            })}
+          </ScrollView>
         </View>
       </View>
     </ImageBackground>

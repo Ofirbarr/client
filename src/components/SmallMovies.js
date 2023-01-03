@@ -1,33 +1,42 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, fastImage} from 'react-native';
 import React from 'react';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import store from '../redux/Store/store';
+import {moviesSlice} from '../redux/Reducers/MovieSlice';
 
 const SmallMovies = props => {
+  const addToFavorites = () => {
+    store.dispatch(moviesSlice.actions.setFavorites(props));
+    console.log(props);
+  };
+  const description = async () => {
+    await store.dispatch(moviesSlice.actions.setSelected(props));
+    const selected = await store.getState().moviesSlice.selected;
+    console.log({selected});
+  };
+
+  // console.log(props.Poster);
   return (
-    <View
-      style={{
-        width: '80%',
-        height: '80%',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-      }}>
-      <View>
+    <View style={{display: 'flex', flexDirection: 'column'}}>
+      <TouchableOpacity onPress={() => description()}>
         <Image
-          source={props.Poster}
-          style={{width: '100%', height: '100%', zIndex: 999}}
+          source={{uri: props.Poster}}
+          resizeMode={'cover'}
+          style={{width: 125, height: 150}}
         />
-      </View>
-      <View
+      </TouchableOpacity>
+      <TouchableOpacity
         style={{
-          flexDirection: 'column',
-          justifyContent: 'flex-start',
-          alignItems: 'flex-start',
-        }}>
-        <Text>{props.Type}</Text>
-        <Text>{props.Title}</Text>
-        <Text>{props.Id}</Text>
-        <Text>{props.Year}</Text>
-      </View>
+          backgroundColor: 'gray',
+          width: 125,
+          height: 30,
+          alignItems: 'center',
+        }}
+        onPress={() => addToFavorites()}>
+        <Image
+          style={{width: 30, height: 30}}
+          source={require('../assets/favorite.png')}></Image>
+      </TouchableOpacity>
     </View>
   );
 };

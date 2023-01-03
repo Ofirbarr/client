@@ -15,6 +15,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import store from '../../redux/Store/store';
 
 const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,16 +34,17 @@ const Login = () => {
     handleSubmit,
     formState: {errors, isSubmitted, isValid},
   } = useForm({
+    criteriaMode: 'all',
+    mode: 'onChange',
     defaultValues: {
       username: '',
       password: '',
     },
   });
-
-  const login = async () => {
+  const onSubmit = data => {
+    console.log({data});
+    store.dispatch(userSlice.actions.setIsLoggedIn(true));
     navigation.navigate(ROUTES.HOME);
-    // dispatch(setSignin(true)); //store
-    // dispatch(setIsLoggedIn(true)); //store
   };
   return (
     <ImageBackground
@@ -164,7 +166,7 @@ const Login = () => {
                 </Text>
               )}
             </View>
-            <TouchableOpacity onPress={() => login()}>
+            <TouchableOpacity onPress={handleSubmit(onSubmit)}>
               <View
                 style={{
                   justifyContent: 'center',

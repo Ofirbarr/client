@@ -4,57 +4,41 @@ import {ROUTES} from '../../constants';
 import {Controller, useForm} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {
-  Alert,
-  Button,
   Dimensions,
   ImageBackground,
   Keyboard,
   Text,
   TextInput,
   View,
-  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import store from '../../redux/Store/store';
+import {userSlice} from '../../redux/Reducers/UserSlice';
 
-const Login = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isSignIn, setIsSignIn] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
+const Register = () => {
   const {height, width} = Dimensions.get('window');
-
   const navigation = useNavigation();
-  // const {login, signin} = useSelector(state => state.userReducer);
-  // const dispatch = useDispatch();
 
   const {
     control,
     handleSubmit,
     formState: {errors, isSubmitted, isValid},
   } = useForm({
+    criteriaMode: 'all',
+    mode: 'onChange',
     defaultValues: {
       username: '',
       password: '',
     },
   });
-
-  const signin = async () => {
+  const onSubmit = data => {
+    console.log({data});
+    store.dispatch(userSlice.actions.setPassword(data.password));
+    store.dispatch(userSlice.actions.setUsername(data.username));
+    store.dispatch(userSlice.actions.setIsRegistered(true));
     navigation.navigate(ROUTES.HOME);
-    // dispatch(setSignin(true)); //store
-    // dispatch(setIsLoggedIn(true)); //store
   };
-  const login = () => {
-    setIsLoggedIn(true);
-    console.log(isLoggedIn);
-    if (isLoggedIn) {
-      navigation.navigate(ROUTES.HOME);
-    } else {
-      Alert.alert('need to login');
-    }
-    // dispatch(setSignin(true)); //store
-    // dispatch(setIsLoggedIn(true)); //store
-  };
+
   return (
     <ImageBackground
       source={require('../../assets/bgImg.png')}
@@ -90,11 +74,13 @@ const Login = () => {
             <View>
               <Controller
                 control={control}
-                rules={{
-                  required: true,
-                  minLength: 8,
-                  pattern: /[A-z]/,
-                }}
+                rules={
+                  {
+                    // required: true,
+                    // minLength: 8,
+                    // pattern: /[A-z]/,
+                  }
+                }
                 render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     placeholder="Username"
@@ -133,11 +119,13 @@ const Login = () => {
               )}
               <Controller
                 control={control}
-                rules={{
-                  required: true,
-                  minLength: 6,
-                  pattern: /\S/,
-                }}
+                rules={
+                  {
+                    // required: true,
+                    // minLength: 6,
+                    // pattern: /\S/,
+                  }
+                }
                 render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     secureTextEntry={true}
@@ -175,7 +163,7 @@ const Login = () => {
                 </Text>
               )}
             </View>
-            <TouchableOpacity onPress={() => signin()}>
+            <TouchableOpacity onPress={handleSubmit(onSubmit)}>
               <View
                 style={{
                   justifyContent: 'center',
@@ -203,4 +191,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
