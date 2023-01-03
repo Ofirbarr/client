@@ -94,7 +94,7 @@ const Register = () => {
                       border: 'solid',
                       borderColor: 'black',
                       borderWidth: 2,
-                      backgroundColor: '#696969',
+                      backgroundColor: '#444',
                       marginBottom: 20,
                       paddingBottom: 30,
                     }}
@@ -108,7 +108,7 @@ const Register = () => {
               {errors.username && (
                 <Text
                   style={{
-                    fontSize: 11,
+                    fontSize: 15,
                     color: 'red',
                     position: 'absolute',
                     top: height * 0.066,
@@ -140,7 +140,7 @@ const Register = () => {
                       border: 'solid',
                       borderColor: 'black',
                       borderWidth: 2,
-                      backgroundColor: '#696969',
+                      backgroundColor: '#444',
                       paddingBottom: 30,
                     }}
                     onSubmitEditing={() => {
@@ -153,7 +153,7 @@ const Register = () => {
               {errors.password && (
                 <Text
                   style={{
-                    fontSize: 11,
+                    fontSize: 15,
                     color: 'red',
                     position: 'absolute',
                     top: height * 0.17,
@@ -173,6 +173,7 @@ const Register = () => {
                   borderColor: 'red',
                   borderWidth: 2,
                   backgroundColor: 'red',
+                  borderRadius: 25,
                 }}>
                 <Text
                   style={{

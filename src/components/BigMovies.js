@@ -26,6 +26,7 @@ const BigMovies = () => {
         style={{
           backgroundColor: 'gray',
           flex: 1,
+          borderRadius: 5,
           // flexDirection: 'column',
           // justifyContent: 'flex-start',
           // alignItems: 'flex-start',

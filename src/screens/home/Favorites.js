@@ -15,7 +15,7 @@ const Favorites = () => {
   const favorite = store.getState().moviesSlice.favorties;
   const getFavoriteMovies = async () => {
     console.log(favorite);
-    return favorite;
+    return [favorite];
   };
 
   useEffect(() => {
