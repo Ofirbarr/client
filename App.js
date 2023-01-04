@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, Text} from 'react-native';
-import {DrawerActions, NavigationContainer} from '@react-navigation/native';
-import {Provider, useDispatch, useSelector} from 'react-redux';
+import {NavigationContainer} from '@react-navigation/native';
+import {Provider} from 'react-redux';
 import AuthNavigator from './src/navigations/AuthNavigator';
 
 import store from './src/redux/Store/store';
@@ -43,7 +42,6 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        {/* {isAuthenticated ? AuthNavigator : DrawerNavigator } */}
         <AuthNavigator />
       </NavigationContainer>
     </Provider>

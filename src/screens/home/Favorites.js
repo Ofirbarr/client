@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  ImageBackground,
-  Text,
-  View,
-  ScrollView,
-} from 'react-native';
+import {ImageBackground, Text, View, ScrollView} from 'react-native';
 import React, {useEffect} from 'react';
 import {COLORS} from '../../constants';
 import store from '../../redux/Store/store';
@@ -15,16 +9,6 @@ import {useSelector} from 'react-redux';
 const Favorites = () => {
   const favoriteMovies = useSelector(state => state.moviesSlice.favorties);
 
-  // const favorite = store.getState().moviesSlice.favorties;
-  // const getFavoriteMovies = async () => {
-  //   console.log(favorite);
-  //   return favorite;
-  // };
-
-  // useEffect(() => {
-  //   getFavoriteMovies();
-  // }, [favorite]);
-  console.log('IN FAVORITES');
   return (
     <ImageBackground
       source={require('../../assets/bgImg.png')}

@@ -1,5 +1,5 @@
 import {StatusCodes} from 'http-status-codes';
-import React, {useState} from 'react';
+import React from 'react';
 import {ROUTES} from '../../constants';
 import {Controller, useForm} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
@@ -74,13 +74,11 @@ const Register = () => {
             <View>
               <Controller
                 control={control}
-                rules={
-                  {
-                    // required: true,
-                    // minLength: 8,
-                    // pattern: /[A-z]/,
-                  }
-                }
+                rules={{
+                  required: true,
+                  minLength: 8,
+                  pattern: /[A-z]/,
+                }}
                 render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     placeholder="Username"
@@ -119,13 +117,11 @@ const Register = () => {
               )}
               <Controller
                 control={control}
-                rules={
-                  {
-                    // required: true,
-                    // minLength: 6,
-                    // pattern: /\S/,
-                  }
-                }
+                rules={{
+                  required: true,
+                  minLength: 6,
+                  pattern: /\S/,
+                }}
                 render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     secureTextEntry={true}

@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   ImageBackground,
   View,
@@ -8,7 +7,7 @@ import {
   TextInput,
   Dimensions,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import store from '../../redux/Store/store';
 import SmallMovies from '../../components/SmallMovies';
 import BigMovies from '../../components/BigMovies';
@@ -18,22 +17,22 @@ import {setFilter} from '../../redux/Reducers/MovieSlice';
 const Home = () => {
   const {height, width} = Dimensions.get('window');
 
-  const [input, setInput] = useState('');
   const selectedMovie = useSelector(state => state.moviesSlice.selected);
 
   const dispatch = useDispatch();
+
+  const filter = useSelector(state => state.moviesSlice.filter);
+  const superMovies = store.getState().moviesSlice.superMovies;
+  const spiderMovies = store.getState().moviesSlice.spiderMovies;
+
+  // const searchUrl = `http://www.omdbapi.com/?s=${filter}&type=movie&apikey=71ec1768`;
+
   // let search = [];
   // let selected;
   // const getSelectedMovie = async () => {
   //   selected = store.getState().moviesSlice.selected;
   //   return selected;
   // };
-
-  const filter = useSelector(state => state.moviesSlice.filter);
-  const superMovies = store.getState().moviesSlice.superMovies;
-  const spiderMovies = store.getState().moviesSlice.spiderMovies;
-
-  const searchUrl = `http://www.omdbapi.com/?s=${filter}&type=movie&apikey=71ec1768`;
 
   // const searchMovie = async () => {
   //   try {

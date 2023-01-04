@@ -1,33 +1,22 @@
 import {StatusCodes} from 'http-status-codes';
-import React, {useState} from 'react';
+import React from 'react';
 import {ROUTES} from '../../constants';
 import {Controller, useForm} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {
-  Alert,
-  Button,
   Dimensions,
   ImageBackground,
   Keyboard,
   Text,
   TextInput,
   View,
-  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import store from '../../redux/Store/store';
 
 const Login = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isSignIn, setIsSignIn] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
   const {height, width} = Dimensions.get('window');
-
   const navigation = useNavigation();
-  // const {login, signin} = useSelector(state => state.userReducer);
-  // const dispatch = useDispatch();
 
   const {
     control,
@@ -196,7 +185,3 @@ const Login = () => {
 };
 
 export default Login;
-
-const styles = StyleSheet.create({
-  loginButton: {},
-});

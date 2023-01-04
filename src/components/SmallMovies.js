@@ -1,9 +1,8 @@
-import {View, Text, Image, fastImage} from 'react-native';
+import {View, Image} from 'react-native';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import store from '../redux/Store/store';
 import {moviesSlice} from '../redux/Reducers/MovieSlice';
-import {useSelector} from 'react-redux';
 
 const SmallMovies = props => {
   const addToFavorites = () => {
@@ -17,7 +16,6 @@ const SmallMovies = props => {
     console.log({selected});
   };
 
-  // console.log(props.Poster);
   return (
     <View style={{display: 'flex', flexDirection: 'column'}}>
       <TouchableOpacity onPress={() => description()}>

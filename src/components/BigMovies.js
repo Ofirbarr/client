@@ -18,7 +18,6 @@ const BigMovies = () => {
       <View style={{flex: 1}}>
         <Image
           source={{uri: selected?.Poster}}
-          //   resizeMode={'cover'}
           style={{width: 180, height: 200}}
         />
       </View>
@@ -26,9 +25,6 @@ const BigMovies = () => {
         style={{
           backgroundColor: 'gray',
           flex: 1,
-          // flexDirection: 'column',
-          // justifyContent: 'flex-start',
-          // alignItems: 'flex-start',
         }}>
         <View style={{alignItems: 'center', marginBottom: 30}}>
           <Text style={{color: 'white', fontSize: 24}}>{selected?.Title}</Text>
