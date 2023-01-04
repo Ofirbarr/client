@@ -7,10 +7,10 @@ import store from './src/redux/Store/store';
 import {moviesSlice} from './src/redux/Reducers/MovieSlice';
 
 export default function App() {
-  const superUrl = 'http://www.omdbapi.com/?s=super&type=movie&apikey=71ec1768';
+  const superUrl = 'http://www.omdbapi.com/?s=super&type=movie&apikey=6049b78c';
 
   const spiderUrl =
-    'http://www.omdbapi.com/?s=spider&type=movie&apikey=71ec1768';
+    'http://www.omdbapi.com/?s=spider&type=movie&apikey=6049b78c';
 
   const getSuperMovies = async () => {
     try {
