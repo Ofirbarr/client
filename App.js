@@ -29,6 +29,7 @@ export default function App() {
     try {
       const response = await fetch(spiderUrl);
       const json = await response.json();
+      console.log(json);
       store.dispatch(moviesSlice.actions.setSpiderMovies(json.Search));
     } catch (error) {
       console.error(error);
