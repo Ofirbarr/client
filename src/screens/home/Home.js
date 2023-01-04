@@ -19,7 +19,7 @@ const Home = () => {
   const {height, width} = Dimensions.get('window');
 
   const [input, setInput] = useState('');
-  const [selectedMovie, setSelectedMovie] = useState('');
+  const selectedMovie = useSelector(state => state.moviesSlice.selected);
 
   const dispatch = useDispatch();
   // let search = [];
@@ -29,33 +29,25 @@ const Home = () => {
   //   return selected;
   // };
 
-  const selected = store.getState().moviesSlice.selected;
-  const getSelectedMovie = async () => {
-    console.log(selected);
-    return selected;
-  };
-  useEffect(() => {
-    getSelectedMovie();
-  }, []);
-  const filter = store.getState().moviesSlice.movieFilter;
+  const filter = useSelector(state => state.moviesSlice.filter);
   const superMovies = store.getState().moviesSlice.superMovies;
   const spiderMovies = store.getState().moviesSlice.spiderMovies;
 
   const searchUrl = `http://www.omdbapi.com/?s=${filter}&type=movie&apikey=71ec1768`;
 
-  const searchMovie = async () => {
-    try {
-      const response = await fetch(searchUrl);
-      const json = await response.json();
-      search.push(json.Search);
-      console.log(search);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  useEffect(() => {
-    getSelectedMovie();
-  }, [selected]);
+  // const searchMovie = async () => {
+  //   try {
+  //     const response = await fetch(searchUrl);
+  //     const json = await response.json();
+  //     search.push(json.Search);
+  //     console.log(search);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   searchMovie();
+  // }, []);
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -63,7 +55,6 @@ const Home = () => {
         source={require('../../assets/bgImg.png')}
         style={{width: '100%', height: '100%', shadowOpacity: -5}}>
         <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.7)'}}>
-          {/* <ScrollView style={{flexGrow: 1}}> */}
           <TextInput
             placeholder="Search for a movie"
             onChange={e => dispatch(setFilter(e.target.value))}
@@ -116,14 +107,14 @@ const Home = () => {
                 Movie Description
               </Text>
             </View>
-            {selected && (
+            {selectedMovie && (
               <View style={{paddingTop: 25, paddingRight: 10}}>
                 <BigMovies
-                  Poster={selected.Poster}
-                  Title={selected.Title}
-                  Year={selected.Year}
-                  Id={selected.imdbID}
-                  Type={selected.Type}
+                  Poster={selectedMovie.Poster}
+                  Title={selectedMovie.Title}
+                  Year={selectedMovie.Year}
+                  Id={selectedMovie.imdbID}
+                  Type={selectedMovie.Type}
                 />
               </View>
             )}
@@ -151,7 +142,6 @@ const Home = () => {
               })}
             </ScrollView>
           </View>
-          {/* </ScrollView> */}
         </View>
       </ImageBackground>
     </SafeAreaView>

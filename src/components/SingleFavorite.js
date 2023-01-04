@@ -1,6 +1,6 @@
 import {View, Text, Image} from 'react-native';
 import React, {useEffect} from 'react';
-import store from '../../redux/Store/store';
+import store from '../redux/Store/store';
 
 const SingleFavorite = favorite => {
   //   const favorite = store.getState().moviesSlice.favorties;

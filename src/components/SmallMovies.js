@@ -3,10 +3,12 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import store from '../redux/Store/store';
 import {moviesSlice} from '../redux/Reducers/MovieSlice';
+import {useSelector} from 'react-redux';
 
 const SmallMovies = props => {
   const addToFavorites = () => {
     store.dispatch(moviesSlice.actions.setFavorites(props));
+    store.dispatch(moviesSlice.actions.setFavoritesNotificationTag);
     console.log(props);
   };
   const description = async () => {

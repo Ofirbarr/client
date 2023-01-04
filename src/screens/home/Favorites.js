@@ -9,18 +9,21 @@ import React, {useEffect} from 'react';
 import {COLORS} from '../../constants';
 import store from '../../redux/Store/store';
 import BigMovies from '../../components/BigMovies';
-import SingleFavorite from './SingleFavorite';
+import SingleFavorite from '../../components/SingleFavorite';
+import {useSelector} from 'react-redux';
 
 const Favorites = () => {
-  const favorite = store.getState().moviesSlice.favorties;
-  const getFavoriteMovies = async () => {
-    console.log(favorite);
-    return [favorite];
-  };
+  const favoriteMovies = useSelector(state => state.moviesSlice.favorties);
 
-  useEffect(() => {
-    getFavoriteMovies();
-  }, [favorite]);
+  // const favorite = store.getState().moviesSlice.favorties;
+  // const getFavoriteMovies = async () => {
+  //   console.log(favorite);
+  //   return favorite;
+  // };
+
+  // useEffect(() => {
+  //   getFavoriteMovies();
+  // }, [favorite]);
   console.log('IN FAVORITES');
   return (
     <ImageBackground
@@ -35,7 +38,7 @@ const Favorites = () => {
           }}>
           <Text>Favorites!</Text>
           <ScrollView nestedScrollEnabled horizontal={false}>
-            {favorite.map((movie, i) => {
+            {favoriteMovies.map((movie, i) => {
               return (
                 <View
                   key={i}
@@ -47,7 +50,6 @@ const Favorites = () => {
                     flex: 1,
                   }}>
                   <SingleFavorite
-                    favorite={favorite}
                     Poster={movie.Poster}
                     Title={movie.Title}
                     Year={movie.Year}
