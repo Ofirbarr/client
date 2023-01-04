@@ -80,7 +80,7 @@ const Login = () => {
                     placeholder="Username"
                     onBlur={onBlur}
                     onChangeText={onChange}
-                    value={value.toLowerCase()}
+                    value={value}
                     placeholderTextColor={errors.username && 'grey'}
                     style={{
                       width: width * 0.9,
@@ -124,7 +124,7 @@ const Login = () => {
                     placeholder="password"
                     onBlur={onBlur}
                     onChangeText={onChange}
-                    value={value.toLowerCase()}
+                    value={value}
                     placeholderTextColor={errors.password && 'grey'}
                     style={{
                       width: width * 0.9,
