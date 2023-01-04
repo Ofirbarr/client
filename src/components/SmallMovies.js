@@ -3,16 +3,22 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import store from '../redux/Store/store';
 import {moviesSlice} from '../redux/Reducers/MovieSlice';
+import {useSelector} from 'react-redux';
 
 const SmallMovies = props => {
+  const badge = useSelector(
+    state => state.moviesSlice.favoritesNotificationBadge,
+  );
   const addToFavorites = () => {
     store.dispatch(moviesSlice.actions.setFavorites(props));
-    store.dispatch(moviesSlice.actions.setFavoritesNotificationTag);
+    store.dispatch(
+      moviesSlice.actions.setFavoritesNotificationBadge(badge + 1),
+    );
     console.log(props);
   };
   const description = async () => {
-    await store.dispatch(moviesSlice.actions.setSelected(props));
-    const selected = await store.getState().moviesSlice.selected;
+    store.dispatch(moviesSlice.actions.setSelected(props));
+    const selected = store.getState().moviesSlice.selected;
     console.log({selected});
   };
 

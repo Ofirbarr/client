@@ -5,9 +5,18 @@ import store from '../../redux/Store/store';
 import BigMovies from '../../components/BigMovies';
 import SingleFavorite from '../../components/SingleFavorite';
 import {useSelector} from 'react-redux';
+import {moviesSlice} from '../../redux/Reducers/MovieSlice';
 
 const Favorites = () => {
+  const badge = 0;
+  const resetNotificationBadge = () => {
+    store.dispatch(moviesSlice.actions.setFavoritesNotificationBadge(badge));
+  };
   const favoriteMovies = useSelector(state => state.moviesSlice.favorties);
+
+  useEffect(() => {
+    resetNotificationBadge();
+  }, []);
 
   return (
     <ImageBackground

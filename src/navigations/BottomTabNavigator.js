@@ -10,8 +10,6 @@ import {useNavigation} from '@react-navigation/native';
 const Tab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
-  const navigation = useNavigation();
-
   return (
     <Tab.Navigator
       tabBar={props => <CustomTabBar {...props} />}
@@ -26,7 +24,7 @@ function BottomTabNavigator() {
         tabBarInactiveTintColor: COLORS.white,
         tabBarStyle: styles.tabBarStyle,
         tabBarActiveTintColor: COLORS.white,
-        tabBarIcon: ({color, size, focused}) => {
+        tabBarIcon: ({color}) => {
           let iconName;
 
           if (route.name === ROUTES.HOME_TAB) {

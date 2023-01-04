@@ -13,6 +13,7 @@ import SmallMovies from '../../components/SmallMovies';
 import BigMovies from '../../components/BigMovies';
 import {useDispatch, useSelector} from 'react-redux';
 import {setFilter} from '../../redux/Reducers/MovieSlice';
+import {Badge} from 'react-native-elements';
 
 const Home = () => {
   const {height, width} = Dimensions.get('window');

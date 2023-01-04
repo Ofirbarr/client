@@ -5,7 +5,7 @@ const initialState = {
   superMovies: [],
   spiderMovies: [],
   favorties: [],
-  favoritesNotificationTag: 0,
+  favoritesNotificationBadge: 0,
   selected: {},
 };
 
@@ -22,8 +22,8 @@ export const moviesSlice = createSlice({
     setFavorites: (state, action) => {
       state.favorties.push(action.payload);
     },
-    setFavoritesNotificationTag: (state, action) => {
-      state.favoritesNotificationTag = state + 1;
+    setFavoritesNotificationBadge: (state, action) => {
+      state.favoritesNotificationBadge = action.payload;
     },
     setSelected: (state, action) => {
       state.selected = action.payload;
