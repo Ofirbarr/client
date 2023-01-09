@@ -20,7 +20,12 @@ export const moviesSlice = createSlice({
       state.spiderMovies = action.payload;
     },
     setFavorites: (state, action) => {
-      state.favorties.push(action.payload);
+      const movieExists = state.favorties.find(
+        movie => movie.Title === action.payload.Title,
+      );
+      if (!movieExists) {
+        state.favorties.push(action.payload);
+      }
     },
     setFavoritesNotificationBadge: (state, action) => {
       state.favoritesNotificationBadge = action.payload;

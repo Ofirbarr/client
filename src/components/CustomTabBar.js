@@ -6,9 +6,10 @@ import {Badge} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 
 const CustomTabBar = props => {
-  const badge = useSelector(
+  let badge = useSelector(
     state => state.moviesSlice.favoritesNotificationBadge,
   );
+
   return (
     <View>
       <View style={styles.tabBar} />

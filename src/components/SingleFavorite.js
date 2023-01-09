@@ -40,7 +40,7 @@ const SingleFavorite = favorite => {
           </Text>
           <Text style={{color: 'white', fontSize: 20}}>
             imdbID:
-            {favorite?.imdbID}
+            {favorite?.Id}
           </Text>
           <Text style={{color: 'white', fontSize: 20}}>
             Type:

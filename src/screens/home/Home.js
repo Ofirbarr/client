@@ -55,7 +55,7 @@ const Home = () => {
         source={require('../../assets/bgImg.png')}
         style={{width: '100%', height: '100%', shadowOpacity: -5}}>
         <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.7)'}}>
-          <TextInput
+          {/* <TextInput
             placeholder="Search for a movie"
             onChange={e => dispatch(setFilter(e.target.value))}
             value={filter}
@@ -71,7 +71,7 @@ const Home = () => {
             onSubmitEditing={() => {
               Keyboard.dismiss();
             }}
-          />
+          /> */}
           <View
             style={{
               flex: 1,

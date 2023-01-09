@@ -10,9 +10,9 @@ const BigMovies = () => {
   };
   useEffect(() => {
     getSelectedMovie();
+    console.log('IN BIG MOVIES');
   }, []);
 
-  console.log('IN BIG MOVIES');
   return (
     <View style={{flexDirection: 'row'}}>
       <View style={{flex: 1}}>
@@ -36,7 +36,7 @@ const BigMovies = () => {
           </Text>
           <Text style={{color: 'white', fontSize: 20}}>
             imdbID:
-            {selected?.imdbID}
+            {selected?.Id}
           </Text>
           <Text style={{color: 'white', fontSize: 20}}>
             Type:

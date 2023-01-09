@@ -4,19 +4,26 @@ import {COLORS} from '../../constants';
 import store from '../../redux/Store/store';
 import BigMovies from '../../components/BigMovies';
 import SingleFavorite from '../../components/SingleFavorite';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {moviesSlice} from '../../redux/Reducers/MovieSlice';
-
+import {useFocusEffect, useIsFocused} from '@react-navigation/native';
+// const focused = useIsFocused;
 const Favorites = () => {
-  const badge = 0;
-  const resetNotificationBadge = () => {
-    store.dispatch(moviesSlice.actions.setFavoritesNotificationBadge(badge));
-  };
-  const favoriteMovies = useSelector(state => state.moviesSlice.favorties);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    const resetNotificationBadge = () => {
+      dispatch(moviesSlice.actions.setFavoritesNotificationBadge(0));
+    };
+    console.log('hello');
     resetNotificationBadge();
   }, []);
+
+  const favoriteMovies = useSelector(state => state.moviesSlice.favorties);
+
+  // const badge = useSelector(
+  //   state => state.moviesSlice.favoritesNotificationBadge,
+  // );
 
   return (
     <ImageBackground
